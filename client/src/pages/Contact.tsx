@@ -3,48 +3,92 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { toast } from "sonner";
 import { useState } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Loader2 } from "lucide-react";
 
 export default function Contact() {
   const [formData, setFormData] = useState({
-    name: "",
-    organization: "",
+    fullName: "",
     email: "",
-    investorType: "",
+    organisation: "",
+    subject: "",
     message: "",
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!validateEmail(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form
-    if (!formData.name || !formData.email || !formData.investorType || !formData.message) {
-      toast.error("Please fill in all required fields");
+    if (!validateForm()) {
+      toast.error("Please correct the errors in the form");
       return;
     }
 
-    // In a real implementation, this would send to a backend
-    toast.success("Inquiry submitted successfully", {
-      description: "We will review your request and respond within 2 business days.",
-    });
+    setIsSubmitting(true);
 
-    // Reset form
-    setFormData({
-      name: "",
-      organization: "",
-      email: "",
-      investorType: "",
-      message: "",
-    });
+    try {
+      // Send form data to backend
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message');
+      }
+
+      toast.success("Thank you – your message has been sent.", {
+        description: "A member of the TriMesa team will be in touch.",
+      });
+
+      // Reset form
+      setFormData({
+        fullName: "",
+        email: "",
+        organisation: "",
+        subject: "",
+        message: "",
+      });
+      setErrors({});
+    } catch (error) {
+      toast.error("Failed to send message", {
+        description: "Please try again or contact us directly at investors@trimesacapital.com",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -76,97 +120,110 @@ export default function Contact() {
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>
-                  <Label htmlFor="name" className="text-[rgb(var(--navy))]">
-                    Name *
+                  <Label htmlFor="fullName" className="text-[rgb(var(--navy))]">
+                    Full Name <span className="text-red-500">*</span>
                   </Label>
                   <Input
-                    id="name"
+                    id="fullName"
                     type="text"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    placeholder="Your full name"
-                    className="mt-2"
-                    required
+                    value={formData.fullName}
+                    onChange={(e) => {
+                      setFormData({ ...formData, fullName: e.target.value });
+                      if (errors.fullName) setErrors({ ...errors, fullName: "" });
+                    }}
+                    placeholder="John Smith"
+                    className={`mt-2 ${errors.fullName ? "border-red-500" : ""}`}
                   />
-                </div>
-
-                <div>
-                  <Label htmlFor="organization" className="text-[rgb(var(--navy))]">
-                    Organization
-                  </Label>
-                  <Input
-                    id="organization"
-                    type="text"
-                    value={formData.organization}
-                    onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
-                    placeholder="Your organization name"
-                    className="mt-2"
-                  />
+                  {errors.fullName && (
+                    <p className="text-sm text-red-500 mt-1">{errors.fullName}</p>
+                  )}
                 </div>
 
                 <div>
                   <Label htmlFor="email" className="text-[rgb(var(--navy))]">
-                    Email *
+                    Email <span className="text-red-500">*</span>
                   </Label>
                   <Input
                     id="email"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    placeholder="your.email@example.com"
+                    onChange={(e) => {
+                      setFormData({ ...formData, email: e.target.value });
+                      if (errors.email) setErrors({ ...errors, email: "" });
+                    }}
+                    placeholder="john.smith@example.com"
+                    className={`mt-2 ${errors.email ? "border-red-500" : ""}`}
+                  />
+                  {errors.email && (
+                    <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <Label htmlFor="organisation" className="text-[rgb(var(--navy))]">
+                    Organisation / Firm
+                  </Label>
+                  <Input
+                    id="organisation"
+                    type="text"
+                    value={formData.organisation}
+                    onChange={(e) => setFormData({ ...formData, organisation: e.target.value })}
+                    placeholder="Your organisation name"
                     className="mt-2"
-                    required
                   />
                 </div>
 
                 <div>
-                  <Label htmlFor="investorType" className="text-[rgb(var(--navy))]">
-                    Investor Type *
+                  <Label htmlFor="subject" className="text-[rgb(var(--navy))]">
+                    Subject
                   </Label>
-                  <Select
-                    value={formData.investorType}
-                    onValueChange={(value) => setFormData({ ...formData, investorType: value })}
-                  >
-                    <SelectTrigger className="mt-2">
-                      <SelectValue placeholder="Select investor type" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="family-office">Family Office</SelectItem>
-                      <SelectItem value="institutional">Institutional Investor</SelectItem>
-                      <SelectItem value="pension-fund">Pension Fund</SelectItem>
-                      <SelectItem value="endowment">Endowment / Foundation</SelectItem>
-                      <SelectItem value="dfi">Development Finance Institution</SelectItem>
-                      <SelectItem value="fund-of-funds">Fund of Funds</SelectItem>
-                      <SelectItem value="hnwi">High Net Worth Individual (Accredited)</SelectItem>
-                      <SelectItem value="other">Other</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <Input
+                    id="subject"
+                    type="text"
+                    value={formData.subject}
+                    onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                    placeholder="Investment inquiry"
+                    className="mt-2"
+                  />
                 </div>
 
                 <div>
                   <Label htmlFor="message" className="text-[rgb(var(--navy))]">
-                    Message *
+                    Message <span className="text-red-500">*</span>
                   </Label>
                   <Textarea
                     id="message"
                     value={formData.message}
-                    onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                    placeholder="Please describe your investment interests and any specific questions about PESO..."
-                    className="mt-2 min-h-[150px]"
-                    required
+                    onChange={(e) => {
+                      setFormData({ ...formData, message: e.target.value });
+                      if (errors.message) setErrors({ ...errors, message: "" });
+                    }}
+                    placeholder="Please describe your investment interests and any specific questions..."
+                    className={`mt-2 min-h-[150px] ${errors.message ? "border-red-500" : ""}`}
                   />
+                  {errors.message && (
+                    <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                  )}
                 </div>
 
                 <Button
                   type="submit"
                   size="lg"
+                  disabled={isSubmitting}
                   className="w-full bg-[rgb(var(--gold))] text-[rgb(var(--navy))] hover:bg-[rgb(var(--gold))]/90"
                 >
-                  Submit Inquiry
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                      Sending...
+                    </>
+                  ) : (
+                    "Submit Inquiry"
+                  )}
                 </Button>
 
                 <p className="text-xs text-[rgb(var(--slate))] mt-4">
-                  By submitting this form, you confirm that you are an institutional or accredited investor and acknowledge that PESO is offered only through confidential private placement memorandum.
+                  By submitting this form, you confirm that you are an institutional or accredited investor and acknowledge that securities are offered only through confidential private placement memorandum.
                 </p>
               </form>
             </div>

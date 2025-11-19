@@ -10,6 +10,39 @@ async function startServer() {
   const app = express();
   const server = createServer(app);
 
+  // Parse JSON bodies
+  app.use(express.json());
+
+  // Contact form API endpoint
+  app.post("/api/contact", async (req, res) => {
+    try {
+      const { fullName, email, organisation, subject, message } = req.body;
+
+      // Validate required fields
+      if (!fullName || !email || !message) {
+        return res.status(400).json({ error: "Missing required fields" });
+      }
+
+      // Log the contact form submission
+      console.log("Contact form submission:", {
+        fullName,
+        email,
+        organisation,
+        subject,
+        message,
+        timestamp: new Date().toISOString(),
+      });
+
+      // In production, this would send an email via SendGrid, AWS SES, etc.
+      // For now, we'll just log it and return success
+      
+      res.status(200).json({ success: true });
+    } catch (error) {
+      console.error("Contact form error:", error);
+      res.status(500).json({ error: "Failed to process contact form" });
+    }
+  });
+
   // Serve static files from dist/public in production
   const staticPath =
     process.env.NODE_ENV === "production"

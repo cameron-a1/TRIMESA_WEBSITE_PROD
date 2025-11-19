@@ -1,9 +1,14 @@
+import { useAuth } from "@/_core/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Link } from "wouter";
 import { Zap, Snowflake, Building2 } from "lucide-react";
 
 export default function Home() {
+  // The userAuth hooks provides authentication state
+  // To implement login/logout functionality, simply call logout() or redirect to getLoginUrl()
+  let { user, loading, error, isAuthenticated, logout } = useAuth();
+
   const sectors = [
     {
       icon: Zap,
@@ -32,7 +37,7 @@ export default function Home() {
               <img
                 src="/brand/trimesa-logo-transparent.png"
                 alt="TriMesa Capital Partners"
-                className="h-72 w-auto mx-auto"
+                className="h-24 sm:h-32 md:h-48 lg:h-72 w-auto max-w-full mx-auto object-contain"
               />
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
