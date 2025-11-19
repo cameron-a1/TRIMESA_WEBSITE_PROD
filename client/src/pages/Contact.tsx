@@ -84,7 +84,7 @@ export default function Contact() {
       setErrors({});
     } catch (error) {
       toast.error("Failed to send message", {
-        description: "Please try again or contact us directly at investors@trimesacapital.com",
+        description: "Please try again or contact us directly at work@trimesa.it.com",
       });
     } finally {
       setIsSubmitting(false);
@@ -246,7 +246,7 @@ export default function Contact() {
                           Email
                         </h3>
                         <p className="text-[rgb(var(--slate))]">
-                          investors@trimesacapital.com
+                          work@trimesa.it.com
                         </p>
                       </div>
                     </div>
@@ -264,10 +264,10 @@ export default function Contact() {
                           Locations
                         </h3>
                         <p className="text-[rgb(var(--slate))] text-sm">
-                          <strong>Cayman Islands:</strong> Registered Office<br />
-                          <strong>Kenya:</strong> Nairobi (Operating Partner)<br />
-                          <strong>Zambia:</strong> Lusaka (Operating Partner)<br />
-                          <strong>Tanzania:</strong> Dar es Salaam (Operating Partner)
+                          Zaa'beel Second<br />
+                          DIFC<br />
+                          Dubai<br />
+                          United Arab Emirates
                         </p>
                       </div>
                     </div>
