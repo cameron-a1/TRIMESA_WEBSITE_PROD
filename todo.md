@@ -48,5 +48,5 @@
 - [x] Update SEO meta description to official text
 - [x] Update site title to "TriMesa Capital Partners" everywhere
 - [x] Update OpenGraph metadata
-- [ ] Commit all changes to GitHub
-- [ ] Verify Vercel deployment builds successfully
+- [x] Commit all changes to GitHub (checkpoint saved)
+- [ ] Verify Vercel deployment builds successfully (pending GitHub push)
