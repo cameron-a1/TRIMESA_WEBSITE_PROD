@@ -84,5 +84,5 @@
 - [x] Test contact form with new email (work@trimesa.it.com displayed correctly)
 - [x] Verify all contact details are consistent across the site (email and DIFC address updated)
 - [x] Test on mobile and desktop (responsive design verified)
-- [ ] Create checkpoint
+- [x] Create checkpoint (df10fa68)
 - [ ] Push to GitHub for Vercel deployment
