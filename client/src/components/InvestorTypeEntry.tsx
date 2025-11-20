@@ -74,7 +74,6 @@ export default function InvestorTypeEntry({ onSelect }: InvestorTypeEntryProps) 
           {/* Disclaimer */}
           <p className="text-sm text-muted-foreground max-w-lg">
             This website is intended for institutional and accredited investors only.
-            By continuing, you confirm that you meet the eligibility criteria.
           </p>
         </div>
       </div>

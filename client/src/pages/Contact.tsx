@@ -257,27 +257,6 @@ export default function Contact() {
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-4">
                       <div className="w-10 h-10 rounded-lg bg-[rgb(var(--gold))]/10 flex items-center justify-center flex-shrink-0">
-                        <MapPin className="w-5 h-5 text-[rgb(var(--gold))]" />
-                      </div>
-                      <div>
-                        <h3 className="font-bold text-[rgb(var(--navy))] mb-1">
-                          Locations
-                        </h3>
-                        <p className="text-[rgb(var(--slate))] text-sm">
-                          Zaa'beel Second<br />
-                          DIFC<br />
-                          Dubai<br />
-                          United Arab Emirates
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-
-                <Card className="border-2">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
-                      <div className="w-10 h-10 rounded-lg bg-[rgb(var(--gold))]/10 flex items-center justify-center flex-shrink-0">
                         <Phone className="w-5 h-5 text-[rgb(var(--gold))]" />
                       </div>
                       <div>
@@ -293,14 +272,7 @@ export default function Contact() {
                 </Card>
               </div>
 
-              <div className="bg-[rgb(var(--gold))]/10 border-l-4 border-[rgb(var(--gold))] p-6 rounded-lg">
-                <h3 className="font-bold text-[rgb(var(--navy))] mb-2">
-                  Important Notice
-                </h3>
-                <p className="text-sm text-[rgb(var(--slate))]">
-                  This website does not constitute an offer to sell securities. TriMesa Capital Partners serves institutional and accredited investors who meet specific eligibility criteria.
-                </p>
-              </div>
+
             </div>
           </div>
         </div>

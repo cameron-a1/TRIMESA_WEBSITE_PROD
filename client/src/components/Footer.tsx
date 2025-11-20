@@ -11,9 +11,13 @@ export default function Footer() {
             />
           </div>
           
-          <div className="text-sm text-[rgb(var(--off-white))] opacity-80 max-w-2xl">
-            <p className="text-xs">
-              TriMesa Capital Partners serves institutional and accredited investors. This website does not constitute an offer to sell securities.
+          <div className="text-sm text-[rgb(var(--off-white))] opacity-80">
+            <h3 className="font-semibold mb-2">Office Dubai</h3>
+            <p className="text-xs leading-relaxed">
+              Zaa'beel Second<br />
+              DIFC<br />
+              Dubai<br />
+              United Arab Emirates
             </p>
           </div>
         </div>
