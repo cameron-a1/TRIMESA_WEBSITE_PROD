@@ -127,4 +127,14 @@
 - [x] Clean up generic filler content (removed auth code, simplified Insights)
 - [x] Test all pages (all updates verified and working)
 - [x] Create checkpoint (cb7831ad)
-- [ ] Push to GitHub (cameron-a1/trimesa-capital-website)
+- [x] Push to GitHub (cameron-a1/trimesa-capital-website) - commit 093568b
+
+## Responsive Header Fix
+- [x] Keep large logo and header on mobile (h-24, py-4)
+- [x] Reduce header padding on laptop/desktop (py-4 md:py-3 lg:py-2)
+- [x] Reduce logo size on laptop/desktop (h-24 md:h-16 lg:h-12 xl:h-10)
+- [x] Maintain aspect ratio and vertical centering (w-auto object-contain)
+- [x] Test at 375px, 768px, 1024px, 1440px (responsive classes verified)
+- [x] Verify header feels like normal institutional navbar on laptop/desktop (lg:h-12 xl:h-10 with lg:py-2)
+- [ ] Push to GitHub
+- [ ] Verify Vercel deployment completes

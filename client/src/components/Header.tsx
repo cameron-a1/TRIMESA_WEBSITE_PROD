@@ -18,12 +18,12 @@ export default function Header() {
 
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50">
-      <nav className="container flex items-center justify-between py-4">
+      <nav className="container flex items-center justify-between py-4 md:py-3 lg:py-2">
         <Link href="/" className="flex items-center">
           <img
             src="/brand/trimesa-logo-transparent.png"
             alt="TriMesa Capital Partners"
-            className="h-24 md:h-32 w-auto max-w-full object-contain"
+            className="h-24 md:h-16 lg:h-12 xl:h-10 w-auto max-w-full object-contain"
           />
         </Link>
 
