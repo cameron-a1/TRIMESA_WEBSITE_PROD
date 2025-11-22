@@ -163,4 +163,9 @@
 
 ## Double Header Logo Size
 - [x] Increase logo to approximately 2x current size (h-48 md:h-40 lg:h-36 xl:h-32 = 192px to 128px)
+- [x] Push changes to TRIMESA_WEBSITE_PROD (commit 6b3677d)
+
+## Slim Header with Big Logo
+- [x] Reduce header padding to minimal (py-1 = 4px top/bottom)
+- [x] Keep logo big (h-48 to h-32 = 192px to 128px maintained)
 - [ ] Push changes to TRIMESA_WEBSITE_PROD
