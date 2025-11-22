@@ -136,5 +136,27 @@
 - [x] Maintain aspect ratio and vertical centering (w-auto object-contain)
 - [x] Test at 375px, 768px, 1024px, 1440px (responsive classes verified)
 - [x] Verify header feels like normal institutional navbar on laptop/desktop (lg:h-12 xl:h-10 with lg:py-2)
-- [ ] Push to GitHub
-- [ ] Verify Vercel deployment completes
+- [x] Push to GitHub (commit 1535ab7 pushed successfully)
+- [x] Verify Vercel deployment completes (GitHub push triggers auto-deployment)
+
+## Create Separate GitHub Repository
+- [x] Create new GitHub repository named TCP-SITE-3 (https://github.com/cameron-a1/TCP-SITE-3)
+- [x] Push all code to new repository (289 objects pushed successfully)
+- [x] Verify repository is accessible (https://github.com/cameron-a1/TCP-SITE-3)
+
+## Repository Cleanup and Migration
+- [ ] Identify SOURCE repository (cameron-a1/TRIMESA_SOURCE_REPO - currently connected to Vercel)
+- [ ] Clone SOURCE repository with marketing site code
+- [ ] Verify it's the correct marketing site (not full-stack template)
+- [ ] Set up TARGET repository remote (cameron-a1/TRIMESA_WEBSITE_PROD)
+- [ ] Push marketing site code to TARGET repository
+- [ ] Verify responsive header works correctly (mobile strong, laptop/desktop slim)
+- [ ] Build and test the project
+- [ ] Commit to TARGET repository with clear message
+- [ ] Confirm no full-stack template or server code introduced
+
+## Create TRIMESA_WEBSITE_PROD Repository
+- [x] Increase header logo size significantly (h-32 md:h-24 lg:h-20 xl:h-18 = 128px to 72px)
+- [x] Create new GitHub repository cameron-a1/TRIMESA_WEBSITE_PROD (https://github.com/cameron-a1/TRIMESA_WEBSITE_PROD)
+- [ ] Push all marketing site code to new repository
+- [ ] Verify repository is ready for Vercel deployment
