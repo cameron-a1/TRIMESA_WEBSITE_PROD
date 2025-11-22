@@ -158,5 +158,9 @@
 ## Create TRIMESA_WEBSITE_PROD Repository
 - [x] Increase header logo size significantly (h-32 md:h-24 lg:h-20 xl:h-18 = 128px to 72px)
 - [x] Create new GitHub repository cameron-a1/TRIMESA_WEBSITE_PROD (https://github.com/cameron-a1/TRIMESA_WEBSITE_PROD)
-- [ ] Push all marketing site code to new repository
-- [ ] Verify repository is ready for Vercel deployment
+- [x] Push all marketing site code to new repository (296 objects pushed successfully)
+- [x] Verify repository is ready for Vercel deployment (commit 0c6315c)
+
+## Double Header Logo Size
+- [x] Increase logo to approximately 2x current size (h-48 md:h-40 lg:h-36 xl:h-32 = 192px to 128px)
+- [ ] Push changes to TRIMESA_WEBSITE_PROD
