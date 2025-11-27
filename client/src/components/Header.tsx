@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <header className="bg-white border-b border-border sticky top-0 z-50">
-      <nav className="container flex items-center justify-between py-1">
+      <nav className="container flex items-center justify-between py-4 md:py-3 lg:py-2">
         <Link href="/" className="flex items-center">
           <img
             src="/brand/trimesa-logo-transparent.png"
